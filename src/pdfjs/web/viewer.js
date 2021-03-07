@@ -13,46 +13,14 @@
  * limitations under the License.
  */
 
-"use strict";
-
-if (typeof PDFJSDev !== "undefined" && PDFJSDev.test("CHROME")) {
-  var defaultUrl; // eslint-disable-line no-var
-
-  (function rewriteUrlClosure() {
-    // Run this code outside DOMContentLoaded to make sure that the URL
-    // is rewritten as soon as possible.
-    const queryString = document.location.search.slice(1);
-    const m = /(^|&)file=([^&]*)/.exec(queryString);
-    defaultUrl = m ? decodeURIComponent(m[2]) : "";
-
-    // Example: chrome-extension://.../http://example.com/file.pdf
-    const humanReadableUrl = "/" + defaultUrl + location.hash;
-    history.replaceState(history.state, "", humanReadableUrl);
-    if (top === window) {
-      // eslint-disable-next-line no-undef
-      chrome.runtime.sendMessage("showPageAction");
-    }
-  })();
-}
-
 let pdfjsWebApp, pdfjsWebAppOptions;
 if (typeof PDFJSDev !== "undefined" && PDFJSDev.test("PRODUCTION")) {
   pdfjsWebApp = require("./app.js");
   pdfjsWebAppOptions = require("./app_options.js");
 }
 
-if (typeof PDFJSDev !== "undefined" && PDFJSDev.test("MOZCENTRAL")) {
-  require("./firefoxcom.js");
-  require("./firefox_print_service.js");
-}
 if (typeof PDFJSDev !== "undefined" && PDFJSDev.test("GENERIC")) {
   require("./genericcom.js");
-}
-if (typeof PDFJSDev !== "undefined" && PDFJSDev.test("CHROME")) {
-  require("./chromecom.js");
-}
-if (typeof PDFJSDev !== "undefined" && PDFJSDev.test("CHROME || GENERIC")) {
-  require("./pdf_print_service.js");
 }
 
 function getViewerConfiguration() {
@@ -187,15 +155,16 @@ function getViewerConfiguration() {
   };
 }
 
+import * as appOptions from "./app_options.js";
+
 function webViewerLoad() {
   const config = getViewerConfiguration();
   if (typeof PDFJSDev === "undefined" || !PDFJSDev.test("PRODUCTION")) {
     Promise.all([
-      import("pdfjs-web/app.js"),
-      import("pdfjs-web/app_options.js"),
-      import("pdfjs-web/genericcom.js"),
-      import("pdfjs-web/pdf_print_service.js"),
-    ]).then(function ([app, appOptions, genericCom, pdfPrintService]) {
+      import("./app.js"),
+      import("./genericcom.js"),
+      import("./pdf_print_service.js"),
+    ]).then(function ([app, genericCom, pdfPrintService]) {
       window.PDFViewerApplication = app.PDFViewerApplication;
       window.PDFViewerApplicationOptions = appOptions.AppOptions;
       app.PDFViewerApplication.run(config);
@@ -233,11 +202,13 @@ function webViewerLoad() {
   }
 }
 
-if (
-  document.readyState === "interactive" ||
-  document.readyState === "complete"
-) {
-  webViewerLoad();
-} else {
-  document.addEventListener("DOMContentLoaded", webViewerLoad, true);
+export function loadApp() {
+  if (
+    document.readyState === "interactive" ||
+    document.readyState === "complete"
+  ) {
+    webViewerLoad();
+  } else {
+    document.addEventListener("DOMContentLoaded", webViewerLoad, true);
+  }
 }

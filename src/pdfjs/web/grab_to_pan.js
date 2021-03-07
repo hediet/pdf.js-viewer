@@ -52,6 +52,7 @@ GrabToPan.prototype = {
 
   /**
    * Bind a mousedown event to the element to enable grab-detection.
+   * @type {() => void}
    */
   activate: function GrabToPan_activate() {
     if (!this.active) {
@@ -66,6 +67,7 @@ GrabToPan.prototype = {
 
   /**
    * Removes all events. Any pending pan session is immediately stopped.
+   * @type {() => void}
    */
   deactivate: function GrabToPan_deactivate() {
     if (this.active) {
