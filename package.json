@@ -1,0 +1,49 @@
+{
+  "name": "@hediet/pdfjs-viewer",
+  "description": "Extraction of the pdf.js viewer application. Customizable.",
+  "version": "0.1.0",
+	"author": {
+		"name": "Henning Dieterichs",
+		"email": "henning.dieterichs@live.de"
+	},
+	"repository": {
+		"url": "https://github.com/hediet/pdf.js-viewer"
+	},
+  "license": "Apache-2.0",
+	"main": "./dist/index",
+	"types": "./dist/src/index.d.ts",
+	"files": [
+	 	"dist",
+		"src"
+	],
+  "scripts": {
+    "dev": "webpack --watch --mode development",
+    "build": "webpack --mode production",
+    "dev-example": "cd example && webpack serve --hot --mode development"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^2.6.347",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1"
+  },
+  "devDependencies": {
+    "@types/copy-webpack-plugin": "^6.4.0",
+    "@types/html-webpack-plugin": "^3.2.2",
+    "@types/webpack": "^4.41.10",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^8.0.0",
+    "css-loader": "^3.5.1",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.0.4",
+    "raw-loader": "^4.0.1",
+    "style-loader": "^1.1.3",
+    "ts-loader": "^8.0.17",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.24.3",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
