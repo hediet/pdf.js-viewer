@@ -7,7 +7,9 @@
 This package makes the PDF.js viewer available to third party applications.
 The viewer can be customized easily. Works best with webpack.
 
-**Please don't report issues of the PDF.js viewer on the PDF.js repository!**
+**Please don't report issues of the PDF.js viewer bundled with this library on the PDF.js repository, as they might be caused by modifications of this library!**
+
+Also, please rebrand the viewer as requested by PDF.js, so that users don't mistake this build for Firefox's pdf viewer.
 
 ## Usage (Webpack)
 
@@ -107,3 +109,33 @@ PDFPageView.prototype.draw = function (...args) {
 
 loadViewer({ pdfUrl: "/sample.pdf" });
 ```
+
+## Updating PDF.js
+
+This library has a dependency on `pdfjs-dist`, so that pdf.js does not need to be build.
+The version of `pdfjs-dist` must agree with the version of the pdfjs viewer!
+
+Use the following commands to update the pdfjs viewer:
+```bash
+# Update the pdfjs branch
+git fetch https://github.com/mozilla/pdf.js --no-tags master:pdfjs
+git checkout pdfjs
+# Split out the pdfjs viewer (which is inside the web folder) and update the pdfjs-viewer branch.
+# If you are using windows, this operation is significantly faster in the WSL.
+git subtree split -P web -b pdfjs-viewer
+git checkout master
+# Merge the changes.
+git subtree merge -P src/pdfjs/web pdfjs-viewer --squash
+```
+
+## Changes to the pdf.js Viewer
+
+A couple of modifications were required to make the pdf.js viewer easily distributable and customizable.
+You can see the modifications by running
+```bash
+git diff master:src/pdfjs/web pdfjs-viewer
+```
+
+## Building
+
+Run `yarn build`.
