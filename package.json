@@ -1,6 +1,6 @@
 {
   "name": "@hediet/pdfjs-viewer",
-  "description": "Extraction of the pdf.js viewer application. Customizable.",
+  "description": "Extraction of the Mozilla pdf.js viewer application. Customizable.",
   "version": "0.1.0",
 	"author": {
 		"name": "Henning Dieterichs",
@@ -11,7 +11,7 @@
 	},
   "license": "Apache-2.0",
 	"main": "./dist/index",
-	"types": "./dist/src/index.d.ts",
+	"types": "./dist/index.d.ts",
 	"files": [
 	 	"dist",
 		"src"
@@ -22,15 +22,14 @@
     "dev-example": "cd example && webpack serve --hot --mode development"
   },
   "dependencies": {
-    "pdfjs-dist": "^2.6.347",
-    "sass": "^1.32.8",
-    "sass-loader": "^11.0.1"
+    "pdfjs-dist": "^2.6.347"
   },
   "devDependencies": {
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1",
     "@types/copy-webpack-plugin": "^6.4.0",
     "@types/html-webpack-plugin": "^3.2.2",
     "@types/webpack": "^4.41.10",
-    "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^8.0.0",
     "css-loader": "^3.5.1",
@@ -45,5 +44,9 @@
     "webpack": "^5.24.3",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"
-  }
+  },
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	}
 }
