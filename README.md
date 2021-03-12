@@ -4,7 +4,7 @@
 [![](https://img.shields.io/static/v1?style=social&label=Donate&message=%E2%9D%A4&logo=Paypal&color&link=%3Curl%3E)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZP5F38L4C88UY&source=url)
 [![](https://img.shields.io/twitter/follow/hediet_dev.svg?style=social)](https://twitter.com/intent/follow?screen_name=hediet_dev)
 
-This package makes the PDF.js viewer available to third party applications.
+This package makes [Mozilla's PDF.js viewer](https://github.com/mozilla/pdf.js) available to third party applications.
 The viewer can be customized easily. Works best with webpack.
 
 **Please don't report issues of the PDF.js viewer bundled with this library on the PDF.js repository, as they might be caused by modifications of this library!**
