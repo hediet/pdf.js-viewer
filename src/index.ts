@@ -7,6 +7,9 @@ export { PDFHistory } from "./pdfjs/web/pdf_history";
 export { PDFPageView } from "./pdfjs/web/pdf_page_view";
 export { PDFSinglePageViewer } from "./pdfjs/web/pdf_single_page_viewer";
 export { PDFViewer } from "./pdfjs/web/pdf_viewer";
+export { PDFOutlineViewer } from "./pdfjs/web/pdf_outline_viewer";
+export { PDFPresentationMode } from "./pdfjs/web/pdf_presentation_mode";
+
 import html from "./content.html";
 import { AppOptions } from "./pdfjs/web/app_options";
 
