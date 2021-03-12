@@ -43,7 +43,12 @@ module.exports = {
 	entry: { main: r("src/index.ts"), viewer: r("src/viewer.ts") },
 
 	plugins: [
-		new CopyWebpackPlugin({ patterns: [{ from: r('../dist/assets') },] }),
+		new CopyWebpackPlugin({ patterns: [{
+			from: path.join(
+				require.resolve("@hediet/pdfjs-viewer/package.json"),
+				"../dist/assets"
+			),
+		}]}),
 		// Setup an `index.html`
 		new HtmlWebpackPlugin({ chunks: ["main"], }),
 		// And a `viewer.html` that uses the viewer entry point.
