@@ -1905,7 +1905,8 @@ const PDFViewerApplication = {
   },
 };
 
-let validateFileURL;
+let validateFileURL = function () {};
+/*
 if (typeof PDFJSDev === "undefined" || PDFJSDev.test("GENERIC")) {
   const HOSTED_VIEWER_ORIGINS = [
     "null",
@@ -1943,6 +1944,7 @@ if (typeof PDFJSDev === "undefined" || PDFJSDev.test("GENERIC")) {
     }
   };
 }
+*/
 
 async function loadFakeWorker() {
   if (!GlobalWorkerOptions.workerSrc) {
